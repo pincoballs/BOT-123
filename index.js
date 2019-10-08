@@ -34,8 +34,8 @@ bot.on('message', message =>{
 });
 
 bot.on('message', message =>{
-    if(message.content.startsWith(PREFIX + "zstarter")){
-        number = 19;
+    if(message.content.startsWith(PREFIX + "starter")){
+        number = 1;
         var random = Math.floor (Math.random() * (number));
         const embed = new Discord.RichEmbed()
                     .setImage(array.aotmeme[random])
