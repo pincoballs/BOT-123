@@ -1,6 +1,6 @@
 const Discord = require('discord.js');
 const bot = new Discord.Client();
-const PREFIX =';';
+const PREFIX ='?';
 
 var fs = require('fs');
 var array=[];
