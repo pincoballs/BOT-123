@@ -3,7 +3,6 @@ const bot = new Discord.Client();
 const PREFIX ='K!';
 
 var fs = require('fs');
-var commandlist = fs.readFileSync('Kanna Kamui Help.txt', 'utf8');
 var array=[];
 array = require("./meme.json");
 /*var meme = fs.readFileSync('meme.txt', 'utf8');*/
@@ -12,12 +11,11 @@ function emoji (id) { return clientInformation.emojis.get(id).toString (); }
 bot.on('ready',() => { console.log("I'm ready to send nudes!"); } )
 
 bot.on('guildMemberAdd', member => {
-    const channel = member.guild.channels.find(channel => channel.name === "♡┆benvenuti")
+    const channel = member.guild.channels.find(channel => channel.name === "nuovi-giocatori")
     if(!channel)return
-    channel.send(`Benvenuto ${member}<:kannakamui:608404704845889556>, siamo felici di accoglierti in ,**:cherry_blossom:𝕃𝕠𝕝𝕚𝕤𝕎𝕠𝕣𝕝𝕕:cherry_blossom:**.<a:zt:608309871896690689>
-Non abusare delle bambine e buona permanenza! <:zhoulamerda:608396991436685344>`);
+    channel.send(`Benvenuto ${member} e preparati a morire in una trincea!`);
 const embed = new Discord.RichEmbed()
-                    .setImage("https://i.kym-cdn.com/photos/images/original/001/241/247/c04.gif")
+                    .setImage("https://media3.giphy.com/media/B5wsiHIFt2QkU/giphy.gif")
                     channel.send({embed})
 });
 
