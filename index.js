@@ -55,7 +55,7 @@ bot.on('message', message =>{
 
 bot.on('message', message =>{
     if(message.content.startsWith(PREFIX + "starter")){
-        number = 4;
+        number = 5;
         var random = Math.floor (Math.random() * (number));
         const embed = new Discord.RichEmbed()
                     .setImage(array.starter[random])
