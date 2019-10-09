@@ -130,5 +130,16 @@ bot.on('message', message =>{
                     message.channel.send(embed)
     }
 });
+bot.on('message', message =>{
+    if(message.content.startsWith(PREFIX + "mao")){
+        number = 2;
+        var random = Math.floor (Math.random() * (number));
+        const embed = new Discord.RichEmbed()
+                    .setImage(array.mao[random])
+                    .setFooter('Powered by pinco.il.mago')
+                    .setTimestamp()
+                    message.channel.send(embed)
+    }
+});
 
 bot.login(process.env.BOT_TOKEN);
