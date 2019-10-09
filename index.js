@@ -49,7 +49,7 @@ bot.on('message', message =>{
         number = 3;
         var random = Math.floor (Math.random() * (number));
         const embed = new Discord.RichEmbed()
-                    .setImage(array.starter[random])
+                    .setImage(array.badmods[random])
                     .setFooter('Powered by pinco.il.mago')
                     .setTimestamp()
                     message.channel.send(embed)
