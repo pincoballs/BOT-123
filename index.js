@@ -19,6 +19,14 @@ const embed = new Discord.RichEmbed()
                     .setImage("https://media3.giphy.com/media/B5wsiHIFt2QkU/giphy.gif")
                     channel.send({embed})
 });
+bot.on('guildMemberAdd', member => {
+    const channel = member.guild.channels.find(channel => channel.name === "new-recruits")
+    if(!channel)return
+    channel.send(`Welcome ${member} and be ready to die in a trench!`);
+const embed = new Discord.RichEmbed()
+                    .setImage("https://media3.giphy.com/media/B5wsiHIFt2QkU/giphy.gif")
+                    channel.send({embed})
+});
 
 
 bot.on('message', message =>{
