@@ -132,7 +132,7 @@ bot.on('message', message =>{
 });
 bot.on('message', message =>{
     if(message.content.startsWith(PREFIX + "mao")){
-        number = 3;
+        number = 2;
         var random = Math.floor (Math.random() * (number));
         const embed = new Discord.RichEmbed()
                     .setImage(array.mao[random])
