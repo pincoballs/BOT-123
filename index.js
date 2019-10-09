@@ -3,7 +3,8 @@ const bot = new Discord.Client();
 const PREFIX ='?';
 
 var fs = require('fs');
-var commandlist = fs.readFileSync('comandi.txt', 'utf8');
+var commandlist = fs.readFileSync('commandlist.txt', 'utf8');
+var comandi = fs.readFileSync('comandi.txt', 'utf8');
 var array=[];
 array = require("./meme.json");
 /*var meme = fs.readFileSync('meme.txt', 'utf8');*/
@@ -34,8 +35,19 @@ bot.on('message', message =>{
     {
         const embed = new Discord.RichEmbed()
         .setColor('#6D466B')
-        .setTitle('**Comandi**')
+        .setTitle('**Commands**')
         .setDescription(commandlist)
+        .setFooter("Powered by pinco.il.mago")
+        message.channel.send(embed)   
+};
+});
+bot.on('message', message =>{
+    if (message.content.startsWith(PREFIX + "aiuto") || message.content.startsWith(PREFIX + "comandi")) 
+    {
+        const embed = new Discord.RichEmbed()
+        .setColor('#6D466B')
+        .setTitle('**Comandi**')
+        .setDescription(comandi)
         .setFooter("Powered by pinco.il.mago")
         message.channel.send(embed)   
 };
