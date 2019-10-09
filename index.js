@@ -3,7 +3,7 @@ const bot = new Discord.Client();
 const PREFIX ='?';
 
 var fs = require('fs');
-var commandlist = fs.readFileSync('commandlist.txt', 'utf8');
+var commandlist = fs.readFileSync('commandlist', 'utf8');
 var comandi = fs.readFileSync('comandi.txt', 'utf8');
 var array=[];
 array = require("./meme.json");
