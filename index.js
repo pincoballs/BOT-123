@@ -121,7 +121,7 @@ bot.on('message', message =>{
 });
 bot.on('message', message =>{
     if(message.content.startsWith(PREFIX + "bunio")){
-        number = 2;
+        number = 3;
         var random = Math.floor (Math.random() * (number));
         const embed = new Discord.RichEmbed()
                     .setImage(array.bunio[random])
