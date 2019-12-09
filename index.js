@@ -35,8 +35,8 @@ bot.on('message', async message => {
         if(!serverQueue)return message.channel.send('There is nothing to stop playing');
         return message.channel.send(`
         **SONG QUEUE**
-        ${serverQueue.songs(song => `**-** ${song.title}`).join('\n')}
-        **Now Playing** ${serverQueue.songs.title}`);
+        ${queueContruct.songs(song => `**-** ${song.title}`).join('\n')}
+        **Now Playing** ${queueContruct.songs.title}`);
     }else if(message.content.startsWith(`${PREFIX}pause`)){
         if(!serverQueue && !serverQueue.playing){
             serverQueue.playing = false;
