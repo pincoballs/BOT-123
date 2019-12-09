@@ -26,9 +26,34 @@ bot.on('message', async message => {
 	} else if (message.content.startsWith(`${PREFIX}stop`)) {
 		stop(message, serverQueue);
 		return;
-	} else {
+    }else if(message.content.startsWith(`${PREFIX}np`)){
+        if(!serverQueue)return message.channel.send('There is nothing to stop playing');
+        return message.channel.send(`Now playing ${serverQueue.songs[0].title}`);
+        
+    }
+    else if(message.content.startsWith(`${PREFIX}queue`)){
+        if(!serverQueue)return message.channel.send('There is nothing to stop playing');
+        return message.channel.send(`
+        **SONG QUEUE**
+        ${serverQueue.songs.Map(song => `**-** ${song.title}`).join('\n')}
+        **Now Playing** ${serverQueue.songs[0].title}`);
+    }else if(message.content.startsWith(`${PREFIX}pause`)){
+        if(!serverQueue && !serverQueue.playing){
+            serverQueue.playing = false;
+            serverQueue.connection.dispatcher.pause();
+            return message.channel.send('Music Paused');}return message.channel.send('Theres nothing playing');
+    }else if(message.content.startsWith(`${PREFIX}resume`)){
+        if(!serverQueue && !serverQueue.playing){
+            serverQueue.playing = true;
+            serverQueue.connection.dispatcher.resume();
+            return message.channel.send('Music Resumed');
+        }return message.channel.send('Theres nothing playing');
+    }
+    else {
 		message.channel.send('You need to enter a valid command!')
-	}
+	} 
+    
+    
 });
 
 async function execute(message, serverQueue) {
