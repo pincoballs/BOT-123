@@ -33,7 +33,7 @@ if(msg.content.startsWith(`${PREFIX}play`)||`${PREFIX}p`){
         console.error(`i cant join the voice channel :${error}`)
     return msg.channel.send(`i cant join the voice channel :${error}`);
     }
-    const dispatcher = connection.playStream(ytdl(args[1]));
+    const dispatcher = connection.play(ytdl(args[1]));
     dispatcher.setVolumeLogarithmic(5 / 5);
 }else if (msg.content.startsWith(`${PREFIX}stop`)){
     if(!msg.member.voiceChannel)return msg.channel.send('You are not in a voice channel ');
