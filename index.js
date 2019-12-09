@@ -7,6 +7,8 @@ var commandlist = fs.readFileSync('commandlist.txt', 'utf8');
 var comandi = fs.readFileSync('comandi.txt', 'utf8');
 var array=[];
 array = require("./meme.json");
+const queue = new Map();
+
 /*var meme = fs.readFileSync('meme.txt', 'utf8');*/
 function emoji (id) { return clientInformation.emojis.get(id).toString (); }
 bot.on('message', async message => {
