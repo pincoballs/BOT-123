@@ -31,11 +31,12 @@ bot.on('message', async message => {
         return message.channel.send(`Now playing ${serverQueue.songs[0].title}`);
         
     }
-    else if(message.content.startsWith(`${PREFIX}queue`)){
+    else if(message.content.startsWith(`${PREFIX}queue`)){ const h=0;
         if(!serverQueue)return message.channel.send('There is nothing to stop playing');
+       for(;h<)
         return message.channel.send(`
         **SONG QUEUE**
-        ${serverQueue.songs.Map(song => `**-** ${song.title}`).join('\n')}
+        ${serverQueue.songs(song => `**-** ${song.title}`).join('\n')}
         **Now Playing** ${serverQueue.songs[0].title}`);
     }else if(message.content.startsWith(`${PREFIX}pause`)){
         if(!serverQueue && !serverQueue.playing){
