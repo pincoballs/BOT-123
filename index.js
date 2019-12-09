@@ -48,7 +48,7 @@ async function execute(message, serverQueue) {
                     server.queue.push(args);
                     Play(connection, message);
                 }).catch(e => { console.log(e) });
-	const songInfo = await ytdl.getInfo(args[0]);
+	const songInfo = await ytdl.getInfo(args[1]);
 	const song = {
 		title: songInfo.title,
 		url: songInfo.video_url,
