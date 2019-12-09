@@ -10,7 +10,7 @@ array = require("./meme.json");
 /*var meme = fs.readFileSync('meme.txt', 'utf8');*/
 function emoji (id) { return clientInformation.emojis.get(id).toString (); }
 const ytdl = require('ytdl-core');
-exports.run = async (client,message,args,ops) =>{
+bot.run = async (client,message,args,ops) =>{
     if(!message.member.voiceChannel) return message.channel.send('Please connect to a Voicechannel... u idiot');
     if(message.guild.me.voiceChannel) return message.channel.send('Sorry the bot is already connected in a voice channel');
     if(!args[0])return message.channel.send('Sorry,please input a url following the command.');
