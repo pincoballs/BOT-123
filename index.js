@@ -41,6 +41,13 @@ async function execute(message, serverQueue) {
 		return message.channel.send('I need the permissions to join and speak in your voice channel!');
 	}
 
+    message.member.voiceChannel.join()
+                .then(connection =>{
+                    var server = servers[message.guild.id];
+                    message.reply("Succesfully Joined!");
+                    server.queue.push(args);
+                    Play(connection, message);
+                }).catch(e => { console.log(e) });
 	const songInfo = await ytdl.getInfo(args[0]);
 	const song = {
 		title: songInfo.title,
