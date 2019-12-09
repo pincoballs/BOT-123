@@ -24,7 +24,7 @@ if(msg.content.startsWith(`${PREFIX}play`)||`${PREFIX}p`){
         return msg.channel.send('I cannot connecto to your voiche channel');
 
     }
-    if(!permissoions.has('SPEAK')){
+    if(!permissions.has('SPEAK')){
         return msg.channel.send('I cannot speak in this voicechannel');
     }
     try {
