@@ -11,15 +11,15 @@ array = require("./meme.json");
 function emoji (id) { return clientInformation.emojis.get(id).toString (); }
 const ytdl = require('ytdl-core');
 bot.run = async (client,message,args,ops) =>{
-    if(!message.member.voiceChannel) return message.channel.send('Please connect to a Voicechannel... u idiot');
-    if(message.guild.me.voiceChannel) return message.channel.send('Sorry the bot is already connected in a voice channel');
+    if(!message.member.channel) return message.channel.send('Please connect to a Voicechannel... u idiot');
+    if(message.guild.me.channel) return message.channel.send('Sorry the bot is already connected in a voice channel');
     if(!args[0])return message.channel.send('Sorry,please input a url following the command.');
-    message.guild.me.voiceChannel.leave();
+    message.guild.me.channel.leave();
     message.channel.send('Adios');
     let validate = await ytdl.validateURL(args[0]);
     if(!validate) return message.channel.send('Sorry,please input a Valid URL');
     let info = await ytdl.getInfo(args[0]);
-    let connection = await message.member.voiceChannel.join();
+    let connection = await message.member.channel.join();
     let dispatcher = await connection.play(ytdl(args[0],{filter: 'audioonly'}));
     message.channel.send(`Now playing : ${info.title}`)
 }
