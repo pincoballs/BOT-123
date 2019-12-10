@@ -61,23 +61,25 @@ bot.on('message', async message => {
 async function execute(message, serverQueue) {
 	const args = message.content.split(' ');
     const searchString = args.slice(1).join(' ');
+    const url = args[1].replace(/<(.+)>/g, '$1');
 	const voiceChannel = message.member.voiceChannel;
 	if (!voiceChannel) return message.channel.send('You need to be in a voice channel to play music!');
 	const permissions = voiceChannel.permissionsFor(message.client.user);
 	if (!permissions.has('CONNECT') || !permissions.has('SPEAK')) {
 		return message.channel.send('I need the permissions to join and speak in your voice channel!');
     }
+    try{var video = await youtube.getVideo(url);}catch(error){
     try {
             var video = await youtube.getVideo(searchString, 1);
             var videos = await youtube.getVideoByID(videos[0], id);
     }catch (err){
         console.error(err);
         return message.channel.send('No Research result.');
-    }
+    }}
     	const song = {
             id: videos.id,
 		title: videos.title,
-		url: videos.video_url,
+		url: `https://www.youtube.com/watch?v=${videos.id}`
 	};
 
 	if (!serverQueue) {
