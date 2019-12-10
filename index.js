@@ -72,7 +72,7 @@ async function execute(message, serverQueue) {
     try {
             var videos = await youtube.searchVideos(searchString, 1);
             var video = await youtube.getVideoByID(videos[0].id);
-            message.channel.send(videos[0].title,videos[0].url);
+            message.channel.send(`${videos[0].title},${videos[0].url},`);
 
     }catch (err){
         console.error(err);
@@ -82,7 +82,7 @@ async function execute(message, serverQueue) {
             id: video.id,
 		title: video.title,
 		url: `https://www.youtube.com/watch?v=${video.id}`
-	};message.channel.send(song);
+	};
 
 	if (!serverQueue) {
 		const queueContruct = {
