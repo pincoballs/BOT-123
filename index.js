@@ -8,7 +8,7 @@ var commandlist = fs.readFileSync('commandlist.txt', 'utf8');
 var comandi = fs.readFileSync('comandi.txt', 'utf8');
 var array=[];
 array = require("./meme.json");
-const youtube = new YouTube(AIzaSyDvCfKFvcOoFz0yh7e5iWscCu62Sqk1IkA);
+const youtube = new YouTube(GOOGLE_API_KEY);
 const queue = new Map();
 
 /*var meme = fs.readFileSync('meme.txt', 'utf8');*/
