@@ -36,9 +36,9 @@ bot.on('message', async message => {
     else if(message.content.startsWith(`${PREFIX}queue`)){
         if(!serverQueue)return message.channel.send('There is nothing playing');
         return message.channel.send(`
-        **SONG QUEUE**
-        ${serverQueue.songs.map(song => `**-** ${song.title}`).join('\n')}
-        **Now Playing** ${serverQueue.songs[0].title}`);
+        **SONG QUEUE:**
+        ${serverQueue.songs.map(song => `**-** **${song.title}** `).join('\n')}
+        **Now Playing:** ${serverQueue.songs[0].title}`);
     }else if(message.content.startsWith(`${PREFIX}pause`)){
         if(serverQueue && serverQueue.playing){
             serverQueue.playing = false;
@@ -68,16 +68,35 @@ async function execute(message, serverQueue) {
 	if (!permissions.has('CONNECT') || !permissions.has('SPEAK')) {
 		return message.channel.send('I need the permissions to join and speak in your voice channel!');
     }
-    try{var video = await youtube.getVideo(url);}catch(error){
-    try {
-            var videos = await youtube.searchVideos(searchString, 1);
-            var video = await youtube.getVideoByID(videos[0].id);
-            message.channel.send(`${videos[0].title} , ${videos[0].url}`);
+    if (url.match(/^https?:\/\/(www.youtube.com|youtube.com)\/playlist(.*)$/)){
+        const playlist = await youtube.getPlaylist(url);
+        const videos = await playlist.getVideos();
 
-    }catch (err){
-        console.error(err);
-        return message.channel.send('No Research result.');
-    }}
+        for(const video of Object.values(videos)){
+            const video2 = await youtube.getVideoByID(video.id);
+            await handleVideo(video2, msg, voiceChannel, true);
+        }
+        return message.channel.send(`Playlist : **${playlist.title}** has been added to the queue!`);
+    }else {
+        try{
+            var video = await youtube.getVideo(url);
+        }catch(error)
+        {
+        try {
+                var videos = await youtube.searchVideos(searchString, 1);
+                var video = await youtube.getVideoByID(videos[0].id);
+                message.channel.send(`${videos[0].title} , ${videos[0].url}`);
+    
+        }catch (err){
+            console.error(err);
+            return message.channel.send('No Research result.');
+        }}
+        return handleVideo(video, message, voiceChannel);
+    }
+}
+    
+    async function handleVideo(video, msg, voiceChannel, playlist = false){
+        const serverQueue = queue.get(message.guild.id);
     	const song = {
             id: video.id,
 		title: video.title,
@@ -109,8 +128,9 @@ async function execute(message, serverQueue) {
 		}
 	} else {
 		serverQueue.songs.push(song);
-		console.log(serverQueue.songs);
-		return message.channel.send(`${song.title} has been added to the queue!`);
+        console.log(serverQueue.songs);
+        if(playlist) return undefined;
+		else return message.channel.send(`${song.title} has been added to the queue!`);
 	}
 
 }
