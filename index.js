@@ -69,15 +69,15 @@ async function execute(message, serverQueue) {
     }
     try {
             var video = await youtube.getVideo(searchString, 1);
-            var videos = await youtube.getVideoByID(videos[0], id);
+            var videos = await youtube.getVideoByID(videos[1], id);
     }catch (err){
         console.error(err);
         return message.channel.send('No Research result.');
     }
     	const song = {
-            id: video.id,
-		title: video.title,
-		url: video.video_url,
+            id: videos.id,
+		title: videos.title,
+		url: videos.video_url,
 	};
 
 	if (!serverQueue) {
