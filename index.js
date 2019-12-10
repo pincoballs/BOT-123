@@ -32,7 +32,7 @@ bot.on('message', async message => {
         
     }
     else if(message.content.startsWith(`${PREFIX}queue`)){
-        if(!serverQueue)return message.channel.send('There is nothing to stop playing');
+        if(!serverQueue)return message.channel.send('There is nothing playing');
         return message.channel.send(`
         **SONG QUEUE**
         ${serverQueue.songs.map(song => `**-** ${song.title}`).join('\n')}
