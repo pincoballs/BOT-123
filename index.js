@@ -14,8 +14,6 @@ const queue = new Map();
 /*var meme = fs.readFileSync('meme.txt', 'utf8');*/
 function emoji (id) { return clientInformation.emojis.get(id).toString (); }
 bot.on('message', async message => {
-    const args = message.content.split(' ');
-    const searchString = args.slice(1).join(' ');
 	if (message.author.bot) return;
 	if (!message.content.startsWith(PREFIX)) return;
 
@@ -62,7 +60,7 @@ bot.on('message', async message => {
 
 async function execute(message, serverQueue) {
 	const args = message.content.split(' ');
-
+    const searchString = args.slice(1).join(' ');
 	const voiceChannel = message.member.voiceChannel;
 	if (!voiceChannel) return message.channel.send('You need to be in a voice channel to play music!');
 	const permissions = voiceChannel.permissionsFor(message.client.user);
