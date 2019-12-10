@@ -19,10 +19,10 @@ bot.on('message', async message => {
 
 	const serverQueue = queue.get(message.guild.id);
 
-	if (message.content.startsWith(`${PREFIX}play`)) {
+	if (message.content.startsWith(`${PREFIX}play || ${PREFIX}p`)) {
 		execute(message, serverQueue);
 		return;
-	} else if (message.content.startsWith(`${PREFIX}skip`)) {
+	} else if (message.content.startsWith(`${PREFIX}skip || ${PREFIX}s`)) {
 		skip(message, serverQueue);
 		return;
 	} else if (message.content.startsWith(`${PREFIX}stop`)) {
@@ -51,9 +51,6 @@ bot.on('message', async message => {
             return message.channel.send('Music Resumed');
         }return message.channel.send('Theres nothing playing');
     }
-    else {
-		message.channel.send('You need to enter a valid command!')
-	} 
     
     
 });
