@@ -19,12 +19,18 @@ bot.on('message', async message => {
 
 	const serverQueue = queue.get(message.guild.id);
 
-	if (message.content.startsWith(`${PREFIX}play`)||(`${PREFIX}p`)) {
+	if (message.content.startsWith(`${PREFIX}play`)) {
 		execute(message, serverQueue);
 		return;
-	} else if (message.content.startsWith(`${PREFIX}skip`) || (`${PREFIX}s`)) {
+    }else if (message.content.startsWith(`${PREFIX}p`)) {
+		execute(message, serverQueue);
+		return;} 
+    else if (message.content.startsWith(`${PREFIX}skip`)) {
 		skip(message, serverQueue);
-		return;
+        return;
+    }else if (message.content.startsWith(`${PREFIX}s`)) {
+            skip(message, serverQueue);
+            return;
 	} else if (message.content.startsWith(`${PREFIX}stop`)) {
 		stop(message, serverQueue);
 		return;
