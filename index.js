@@ -14,6 +14,7 @@ const queue = new Map();
 /*var meme = fs.readFileSync('meme.txt', 'utf8');*/
 function emoji (id) { return clientInformation.emojis.get(id).toString (); }
 bot.on('message', async message => {
+    const args = message.content.split(' ');
     const searchString = args.slice(1).join(' ');
 	if (message.author.bot) return;
 	if (!message.content.startsWith(PREFIX)) return;
