@@ -81,7 +81,7 @@ async function execute(message, serverQueue) {
             id: video.id,
 		title: video.title,
 		url: `https://www.youtube.com/watch?v=${video.id}`
-	};message.channel.send(title);
+	};message.channel.send(song);
 
 	if (!serverQueue) {
 		const queueContruct = {
