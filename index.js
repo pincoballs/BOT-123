@@ -37,7 +37,7 @@ bot.on('message', async message => {
         if(!serverQueue)return message.channel.send('There is nothing playing');
         return message.channel.send(`
         **SONG QUEUE:**
-        ${serverQueue.songs.map(song => `**-** **${song.title}** `).join('\n')}
+        ${serverQueue.songs.map(song => `**-** ${song.title}`).join('\n')}
         **Now Playing:** ${serverQueue.songs[0].title}`);
     }else if(message.content.startsWith(`${PREFIX}pause`)){
         if(serverQueue && serverQueue.playing){
