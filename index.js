@@ -1,17 +1,20 @@
 const Discord = require('discord.js');
 const bot = new Discord.Client();
 const PREFIX ='?';
+const YouTube = require('simple-youtube-api');
 const ytdl = require('ytdl-core');
 var fs = require('fs');
 var commandlist = fs.readFileSync('commandlist.txt', 'utf8');
 var comandi = fs.readFileSync('comandi.txt', 'utf8');
 var array=[];
 array = require("./meme.json");
+const youtube = new YouTube(AIzaSyDvCfKFvcOoFz0yh7e5iWscCu62Sqk1IkA);
 const queue = new Map();
 
 /*var meme = fs.readFileSync('meme.txt', 'utf8');*/
 function emoji (id) { return clientInformation.emojis.get(id).toString (); }
 bot.on('message', async message => {
+    const searchString = args.slice(1).join(' ');
 	if (message.author.bot) return;
 	if (!message.content.startsWith(PREFIX)) return;
 
@@ -64,11 +67,18 @@ async function execute(message, serverQueue) {
 	const permissions = voiceChannel.permissionsFor(message.client.user);
 	if (!permissions.has('CONNECT') || !permissions.has('SPEAK')) {
 		return message.channel.send('I need the permissions to join and speak in your voice channel!');
-	}
-	const songInfo = await ytdl.getInfo(args[1]);
-	const song = {
-		title: songInfo.title,
-		url: songInfo.video_url,
+    }
+    try {
+            var video = await youtube.getVideo(searchString, 1);
+            var videos = await youtube.getVideoByID(videos[0], id);
+    }catch (err){
+        console.error(err);
+        return message.channel.send('No Research result.');
+    }
+    	const song = {
+            id: video.id,
+		title: video.title,
+		url: video.video_url,
 	};
 
 	if (!serverQueue) {
