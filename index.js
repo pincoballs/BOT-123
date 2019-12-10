@@ -74,7 +74,7 @@ async function execute(message, serverQueue) {
 
         for(const video of Object.values(videos)){
             const video2 = await youtube.getVideoByID(video.id);
-            await handleVideo(video2, msg, voiceChannel, true);
+            await handleVideo(video2, message, voiceChannel, true);
         }
         return message.channel.send(`Playlist : **${playlist.title}** has been added to the queue!`);
     }else {
@@ -95,7 +95,7 @@ async function execute(message, serverQueue) {
     }
 }
     
-    async function handleVideo(video, msg, voiceChannel, playlist = false){
+    async function handleVideo(video, message, voiceChannel, playlist = false){
         const serverQueue = queue.get(message.guild.id);
     	const song = {
             id: video.id,
