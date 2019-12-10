@@ -76,12 +76,12 @@ async function execute(message, serverQueue) {
     }catch (err){
         console.error(err);
         return message.channel.send('No Research result.');
-    }message.channel.send(video);}
+    }}
     	const song = {
             id: video.id,
 		title: video.title,
 		url: `https://www.youtube.com/watch?v=${video.id}`
-	};
+	};message.channel.send(title);
 
 	if (!serverQueue) {
 		const queueContruct = {
