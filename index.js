@@ -43,7 +43,7 @@ bot.on('message', async message => {
             serverQueue.connection.dispatcher.pause();
             return message.channel.send('Music Paused');}return message.channel.send('Theres nothing playing');
     }else if(message.content.startsWith(`${PREFIX}resume`)){
-        if(serverQueue && serverQueue.playing){
+        if(serverQueue && !serverQueue.playing){
             serverQueue.playing = true;
             serverQueue.connection.dispatcher.resume();
             return message.channel.send('Music Resumed');
