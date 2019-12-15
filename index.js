@@ -28,7 +28,7 @@ bot.on('message', async message => {
     else if (message.content.startsWith(`${PREFIX}skip`)) {
 		skip(message, serverQueue);
         return;
-    }else if (message.content.startsWith(`${PREFIX}s`)) {
+    }else if (message.content.startsWith(NOT(`${PREFIX}stop`)&&(`${PREFIX}s`))) {
             skip(message, serverQueue);
             return;
 	} else if (message.content.startsWith(`${PREFIX}stop`)) {
