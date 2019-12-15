@@ -25,10 +25,10 @@ bot.on('message', async message => {
     }else if (message.content.startsWith(`${PREFIX}p`)) {
 		execute(message, serverQueue);
 		return;} 
-    else if (message.content.startsWith(`${PREFIX}skip`)) {
+    else if (message.content.startsWith((`${PREFIX}skip`)||(`${PREFIX}s`))) {
 		skip(message, serverQueue);
         return;
-    }else if (message.content.startsWith(NOT(`${PREFIX}stop`)&&(`${PREFIX}s`))) {
+    }else if (message.content.startsWith(`${PREFIX}stop`)) {
             skip(message, serverQueue);
             return;
 	} else if (message.content.startsWith(`${PREFIX}stop`)) {
