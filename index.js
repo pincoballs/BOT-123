@@ -6,8 +6,7 @@ const ytdl = require('ytdl-core');
 var fs = require('fs');
 var commandlist = fs.readFileSync('commandlist.txt', 'utf8');
 var comandi = fs.readFileSync('comandi.txt', 'utf8');
-var array=[];
-array = require("./meme.json");
+var array = require("./meme.json");
 const youtube = new YouTube(process.env.GOOGLE_API_KEY);
 const queue = new Map();
 
